@@ -20,7 +20,7 @@ export default async function handler (req,res){
 
         //inserting  data
         try{
-            const{error}=await supabase.from('users').insert(Name,Email,Password)
+            const{error}=await db.from('users').insert(Name,Email,Password)
             return res.status(200).json({
                         success:true,
                         message:"Account created successfully"

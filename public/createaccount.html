@@ -344,7 +344,7 @@
             Initialize your identity in the system
         </p>
 
-        <form>
+        
 
             <!-- Username -->
             <div class="input-group">
@@ -429,7 +429,7 @@
                 CREATE ACCOUNT
             </button>
 
-        </form>
+        
 
         <div class="login">
             Already registered?
@@ -448,19 +448,24 @@
 
         async function createAccount(){
 
-            const Name=document.getElementById("Name").Value;
+            const Name=document.getElementById("Name").value;
 
-            const Email=document.getElementById("Email").Value;
+            const Email=document.getElementById("Email").value;
 
-            const Password=document.getElemntById("Password").value;
+            const Password=document.getElemntById("userPassword").value;
 
 
-            const response=await fetch("",{
+            const response=await fetch("/api/createaccount",{
                 method:"POST",
-                data:JSON.stringify(Name,Email,Password)
+                headers:{"Content-Type":"application/json"},
+                body:JSON.stringify({Name:Name,Email:Email,Password:Password})
             });
 
-            const recieved=await response.json();
+            const received=await response.json();
+
+            if(received.success){
+                window.location.href="/public/dashbord.html";
+            }
         }
     </script>
 
